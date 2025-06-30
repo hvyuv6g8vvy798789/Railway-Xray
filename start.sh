@@ -18,7 +18,9 @@ mkdir -p /usr/share/caddy/$AUUID && wget -O /usr/share/caddy/$AUUID/StoreFiles $
 wget -P /usr/share/caddy/$AUUID -i /usr/share/caddy/$AUUID/StoreFiles
 
 for file in $(ls /usr/share/caddy/$AUUID); do
-    [[ "$file" != "StoreFiles" ]] && echo \<a href=\""$file"\" download\>$file\<\/a\>\<br\> >>/usr/share/caddy/$AUUID/ClickToDownloadStoreFiles.html
+    if [ "$file" != "StoreFiles" ]; then
+        echo \<a href=\""$file"\" download\>$file\<\/a\>\<br\> >>/usr/share/caddy/$AUUID/ClickToDownloadStoreFiles.html
+    fi
 done
 
 # start
